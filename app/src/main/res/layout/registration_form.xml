@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/registration_user"
+        android:layout_width="336dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Username"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="64dp" />
+
+    <RadioButton
+        android:id="@+id/radio_button_sup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="Supermercato"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="248dp" />
+
+    <RadioButton
+        android:id="@+id/radio_button_ente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ente Caritatevole"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="302dp" />
+
+    <EditText
+        android:id="@+id/registration_password"
+        android:layout_width="337dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="135dp" />
+</android.support.constraint.ConstraintLayout>
