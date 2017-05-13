@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     Button B_Supermercati,B_Registrazione;
     TextView text;
     String ShowUrl="";
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
