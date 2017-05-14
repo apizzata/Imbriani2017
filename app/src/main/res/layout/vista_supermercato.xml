@@ -6,18 +6,27 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <Button
+        android:id="@+id/b_info_sup"
+        android:layout_width="166dp"
+        android:layout_height="46dp"
+        android:onClick="onClickInfo"
+        android:text="Modifica Info"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="438dp" />
+
     <ListView
         android:id="@+id/Lista_prodotti"
-        android:layout_width="484dp"
-        android:layout_height="420dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp" />
+        android:layout_width="334dp"
+        android:layout_height="401dp"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <Button
-        android:id="@+id/AggiungiProdotto"
-        android:layout_width="188dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/b_aggiungi_prod_sup"
+        android:layout_width="166dp"
+        android:layout_height="46dp"
         android:text="Aggiungi Prodotti"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="436dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="438dp" />
 </android.support.constraint.ConstraintLayout>

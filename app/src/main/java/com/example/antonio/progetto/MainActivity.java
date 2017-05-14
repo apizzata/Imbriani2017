@@ -43,5 +43,9 @@ public class MainActivity extends AppCompatActivity {
          */
 
     }
+    public void log_out(View v){
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+    }
 
 }

@@ -40,4 +40,13 @@
         android:inputType="textPassword"
         tools:layout_editor_absoluteX="24dp"
         tools:layout_editor_absoluteY="135dp" />
+
+    <Button
+        android:id="@+id/B_registrazione_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Registra"
+        android:text="Registrati"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="363dp" />
 </android.support.constraint.ConstraintLayout>

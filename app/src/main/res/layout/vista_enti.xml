@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/lista_ordini_ente"
+        android:layout_width="375dp"
+        android:layout_height="244dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I tuoi ordini"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="7dp" />
+
+    <EditText
+        android:id="@+id/ricerca_prodotti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Ricerca Prodotti"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="307dp" />
+
+    <Button
+        android:id="@+id/b_ricerca_ente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="ricerca_prodotti"
+        android:text="Vai"
+        tools:layout_editor_absoluteX="268dp"
+        tools:layout_editor_absoluteY="307dp" />
+
+    <Button
+        android:id="@+id/b_modifica_info_ente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickInfo"
+        android:text="Modifica Info"
+        tools:layout_editor_absoluteX="245dp"
+        tools:layout_editor_absoluteY="401dp" />
+
+    <Button
+        android:id="@+id/b_log_out_ente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="log_out"
+        android:text="Log out"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="401dp" />
+</android.support.constraint.ConstraintLayout>

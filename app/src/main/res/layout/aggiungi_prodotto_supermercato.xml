@@ -27,7 +27,7 @@
         tools:layout_editor_absoluteY="85dp" />
 
     <Button
-        android:id="@+id/aggiungi_nuovo_prod"
+        android:id="@+id/b_aggiungi_nuovo_prod_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aggiungi"
