@@ -22,14 +22,14 @@ public class GestioneDB {
     static final String KEY_NOME = "nome";
     static final String KEY_INDIRIZZO = "indirizzo";
     static final String TAG = "GestioneDB";
-    static final String DATABASE_NOME = "TestDB";
-    static final String DATABASE_TABELLA = "enti";
+    static final String DATABASE_NOME = "Progetto";
+    static final String DATABASE_TABELLA = "ENTI";
     static final int DATABASE_VERSIONE = 1;
 
     /*
     Creo una costante contenente la query per la creazione del database
     */
-    static final String DATABASE_CREAZIONE = "create table enti (NOME VARCHAR(30), INDIRIZZO VARCHAR(50), COMUNE VARCHAR(50), PROVINCIA VARCHAR(30), EMAIL VARCHAR(50), PASSWORD VARCHAR(50), PRIMARY KEY(EMAIL));";
+    static final String DATABASE_CREAZIONE = "create table ENTI (NOME VARCHAR(30), INDIRIZZO VARCHAR(50), COMUNE VARCHAR(50), PROVINCIA VARCHAR(30), EMAIL VARCHAR(50), PASSWORD VARCHAR(50), PRIMARY KEY(EMAIL));";
 
     final Context context;
     DatabaseHelper DBHelper;
@@ -53,7 +53,7 @@ public class GestioneDB {
         DatabaseHelper(Context context)
         {
             // invoco il costruttore della classe base
-            super(context, null, null, DATABASE_VERSIONE);
+            super(context, DATABASE_NOME, null, DATABASE_VERSIONE);
         }
         @Override
         public void onCreate(SQLiteDatabase db)
@@ -64,6 +64,7 @@ public class GestioneDB {
             catch (SQLException e) {
                 e.printStackTrace();
             }
+
         }
 
         @Override
@@ -105,14 +106,22 @@ public class GestioneDB {
         values.put( "EMAIL", email);
         values.put( "PASSWORD", pass);
         // applico il metodo insert
-        return db.insert("enti", null, values);
+        return db.insert("ENTI", null, values);
     }
 
     public Cursor ottieniEnti(){
         return db.query(DATABASE_TABELLA,new String[] {"NOME", "INDIRIZZO", "COMUNE", "PROVINCIA", "EMAIL", "PASSWORD"}, null, null, null, null, null);
     }
+    public Cursor ottieniEnticonUtente(String utente){
+        Cursor mCursore = db.query(true, DATABASE_TABELLA, new String[] {"NOME", "INDIRIZZO", "COMUNE", "PROVINCIA", "EMAIL", "PASSWORD"}, "EMAIL ="+utente, null, null, null, null, null);
+        if (mCursore != null) {
+            mCursore.moveToFirst();
+        }
+        return mCursore;
 
-    public long insertSupermercato(String nome, String indirizzo, String comune, String provincia, String pass, String email ) {
+    }
+
+    public long insertSupermercato(String nome, String indirizzo, String comune, String provincia,  String email,String pass) {
         ContentValues values = new ContentValues();
         values.put( "NOME", nome );
         values.put( "INDIRIZZO", indirizzo );
@@ -120,7 +129,7 @@ public class GestioneDB {
         values.put( "PROVINCIA", provincia );
         values.put( "EMAIL", email);
         values.put( "PASSWORD", pass);
-        return db.insertOrThrow("SUPERMERCATI", null, values);
+        return db.insert("supermercati", null, values);
     }
 
     public long insertProdotto(String nome, String quantita, String provenienza, String scadenza , String tipo, String lotto, String foto, String marca  ) {
@@ -138,7 +147,11 @@ public class GestioneDB {
 
     public Cursor ottieniSupermercati()
     {
-        return db.query("supermercati", null, null, null, null, null, null);
+        return db.query("supermercati",new String[] {"NOME", "INDIRIZZO", "COMUNE", "PROVINCIA", "EMAIL", "PASSWORD"}, null, null, null, null, null);
+    }
+    public Cursor ottieniSupermercaticonUtente(String utente)
+    {
+        return db.query("supermercati",new String[] {"NOME", "INDIRIZZO", "COMUNE", "PROVINCIA", "EMAIL", "PASSWORD"}, "EMAIL ="+utente, null, null, null, null);
     }
 
 }

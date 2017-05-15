@@ -1,6 +1,9 @@
 package com.example.antonio.progetto;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
     Button BLogin, BRegistrazione;
     EditText TUser, TPass;
-
+    private GestioneDB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //inizializzazione DB
-        GestioneDB db = new GestioneDB(this);
+        db = new GestioneDB(this);
 
         try {
             String destPath = "/data/data/" + getPackageName() + "/databases";
@@ -46,17 +49,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         BLogin = (Button) findViewById(R.id.login);
-        BRegistrazione= (Button) findViewById(R.id.Registrazione);
-        TUser =(EditText) findViewById(R.id.Email);
-        TPass = ( EditText) findViewById(R.id.Password);
+        BRegistrazione = (Button) findViewById(R.id.Registrazione);
+        TUser = (EditText) findViewById(R.id.Email);
+        TPass = (EditText) findViewById(R.id.Password);
+
+
         TUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TUser.setText("");
+                if (TUser.getText().toString().equals("Email")) {
+                    TUser.setText("");
+                }
             }
         });
+        db.open();
+        long x = db.inserisciEnti(null, null, null, null, "deco2", "cacca");
+        Cursor ca=db.ottieniEnticonUtente("deco2");
+        Toast.makeText(getApplicationContext(),ca.getString(5),Toast.LENGTH_LONG).show();
     }
-
     public void Registrazione(View v){
         Intent i= new Intent(this, Registrazione.class);
         startActivity(i);
@@ -75,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
            Toast.makeText(getApplicationContext(),"Password o Email errate", Toast.LENGTH_LONG);
            }
          */
+
+        Cursor c= db.ottieniSupermercaticonUtente(user);
+        if(!pass.equals(c.getString(5))||c.isNull(5)){
+            Toast.makeText(getApplicationContext(),"Password o Utente errato",Toast.LENGTH_LONG).show();
+        }
         Intent i= new Intent(this, MainSupermercato.class);
         startActivity(i);
 
