@@ -22,11 +22,36 @@ public class ModificaInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.modifica_info);
         nome= (EditText) findViewById(R.id.info_nome);
         indirizzo=(EditText) findViewById(R.id.info_indirizzo);
         provincia= (EditText) findViewById(R.id.info_Provincia);
         comune= (EditText) findViewById(R.id.info_Comune);
         BAggiorna= (Button) findViewById(R.id.B_aggiorna_info);
+        nome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nome.setText("");
+            }
+        });
+        indirizzo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                indirizzo.setText("");
+            }
+        });
+        provincia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                provincia.setText("");
+            }
+        });
+        comune.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comune.setText("");
+            }
+        });
     }
 
     public void AggiornaInfo(View v){

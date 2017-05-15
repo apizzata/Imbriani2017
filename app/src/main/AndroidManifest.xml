@@ -14,20 +14,15 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <uses-permission android:name="android.permission.INTERNET" />
-            </intent-filter>
+               </intent-filter>
         </activity>
 
-        <activity android:name=".Registrazione">
-            <intent-filter>
-                <action android:name="com.example.antonio.progetto.Registrazione" />
-                <category android:name="android.intent.category.DEFAULT" />
-                </intent-filter>
-
-        </activity>
+        <activity android:name=".Registrazione"/>
         <activity android:name=".supermercato.MainSupermercato" />
         <activity android:name=".supermercato.ModificaInfo" />
-
+        <activity android:name=".supermercato.AggiungiProdottiSup" />
+        <activity android:name=".ente.MainEnte" />
+        <activity android:name=".supermercato.DescrizioneProdotto" />
 
     </application>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
@@ -7,35 +7,51 @@
 
     <EditText
         android:id="@+id/registration_user"
-        android:layout_width="336dp"
-        android:layout_height="51dp"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="90dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Username"
         tools:layout_editor_absoluteX="24dp"
         tools:layout_editor_absoluteY="64dp" />
 
-    <RadioButton
-        android:id="@+id/radio_button_sup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:text="Supermercato"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="248dp" />
+    <RadioGroup
+        android:id="@+id/Radio_group_reg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <RadioButton
-        android:id="@+id/radio_button_ente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ente Caritatevole"
-        tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="302dp" />
+        <RadioButton
+            android:id="@+id/radio_button_sup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="250dp"
+            android:checked="false"
+            android:text="Supermercato"
+            android:textColorLink="@color/colorPrimary"
+            tools:layout_editor_absoluteX="132dp"
+            tools:layout_editor_absoluteY="248dp" />
+
+        <RadioButton
+            android:id="@+id/radio_button_ente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="122dp"
+            android:layout_marginTop="10dp"
+            android:text="Ente Caritatevole"
+            android:textColorLink="@color/colorPrimary"
+            tools:layout_editor_absoluteX="123dp"
+            tools:layout_editor_absoluteY="302dp" />
+    </RadioGroup>
 
     <EditText
         android:id="@+id/registration_password"
-        android:layout_width="337dp"
-        android:layout_height="46dp"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="180dp"
         android:ems="10"
         android:inputType="textPassword"
         tools:layout_editor_absoluteX="24dp"
@@ -45,8 +61,11 @@
         android:id="@+id/B_registrazione_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="145dp"
+        android:layout_marginTop="350dp"
         android:onClick="Registra"
         android:text="Registrati"
         tools:layout_editor_absoluteX="141dp"
         tools:layout_editor_absoluteY="363dp" />
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

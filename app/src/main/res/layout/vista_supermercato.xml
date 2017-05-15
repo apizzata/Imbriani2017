@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
@@ -10,15 +10,25 @@
         android:id="@+id/b_info_sup"
         android:layout_width="166dp"
         android:layout_height="46dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp"
         android:onClick="onClickInfo"
         android:text="Modifica Info"
         tools:layout_editor_absoluteX="202dp"
-        tools:layout_editor_absoluteY="438dp" />
+        tools:layout_editor_absoluteY="438dp"
+        android:layout_marginBottom="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ListView
         android:id="@+id/Lista_prodotti"
         android:layout_width="334dp"
-        android:layout_height="401dp"
+        android:layout_height="440dp"
+        android:layout_above="@+id/b_info_sup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="44dp"
+        android:paddingTop="-10dp"
         tools:layout_editor_absoluteX="25dp"
         tools:layout_editor_absoluteY="16dp" />
 
@@ -26,7 +36,24 @@
         android:id="@+id/b_aggiungi_prod_sup"
         android:layout_width="166dp"
         android:layout_height="46dp"
+        android:layout_alignBaseline="@+id/b_info_sup"
+        android:layout_alignBottom="@+id/b_info_sup"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:onClick="onClickCambiaAggiungi"
         android:text="Aggiungi Prodotti"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="438dp" />
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/b_log_out_sup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="6dp"
+        android:onClick="log_out_sup"
+        android:text="Log out" />
+</RelativeLayout>

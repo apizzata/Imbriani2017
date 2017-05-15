@@ -4,12 +4,14 @@ package com.example.antonio.progetto;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 /**
@@ -19,15 +21,36 @@ import android.widget.Toast;
 public class Registrazione extends AppCompatActivity {
     EditText user, pass;
     RadioButton sup,ente;
+    RadioGroup group;
     Button reg;
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.registration_form);
         user= (EditText) findViewById(R.id.registration_user);
         pass= (EditText) findViewById(R.id.registration_password);
         sup= (RadioButton) findViewById(R.id.radio_button_sup);
         ente =(RadioButton) findViewById(R.id.radio_button_ente);
         reg=(Button) findViewById(R.id.B_registrazione_form);
+        group=(RadioGroup) findViewById(R.id.Radio_group_reg);
+
+        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if(ente.isChecked()){
+                    sup.setChecked(false);
+                }else if(sup.isChecked()){
+                    ente.setChecked(false);
+                }
+            }
+        });
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user.setText("");
+            }
+        });
+
     }
 
     public void Registra(View v){
@@ -35,14 +58,13 @@ public class Registrazione extends AppCompatActivity {
         String Pass= pass.getText().toString();
         if(sup.isChecked()&&!ente.isChecked()){
             //registra tra i supp //TODO aggiungere insert
-            Toast.makeText(getApplicationContext(),"Registrazione riuscita", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(),"Registrazione riuscita", Toast.LENGTH_SHORT).show();
         }else if (ente.isChecked() && !sup.isChecked()){
             //registra tra gli enti //TODO aggiungere insert
-            Toast.makeText(getApplicationContext(),"Registrazione riuscita", Toast.LENGTH_SHORT);
-        }else if(sup.isChecked() && ente.isChecked()){
-            Toast.makeText(getApplicationContext(),"Devi selezionare solo uno tra i due",Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(),"Registrazione riuscita", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(getApplicationContext(),"Seleziona una tra le due scelte", Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(),"Seleziona una tra le due scelte", Toast.LENGTH_LONG).show();
         }
     }
+
 }

@@ -8,6 +8,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.antonio.progetto.ente.MainEnte;
+import com.example.antonio.progetto.supermercato.MainSupermercato;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,10 +27,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //inizializzazione DB
+        GestioneDB db = new GestioneDB(this);
+
+        try {
+            String destPath = "/data/data/" + getPackageName() + "/databases";
+            File f = new File(destPath);
+            if (!f.exists()) {
+                f.mkdirs();
+                f.createNewFile();
+                CopyDB(getBaseContext().getAssets().open("progetto.db"), new FileOutputStream(destPath + "/progetto.db"));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         BLogin = (Button) findViewById(R.id.login);
         BRegistrazione= (Button) findViewById(R.id.Registrazione);
         TUser =(EditText) findViewById(R.id.Email);
         TPass = ( EditText) findViewById(R.id.Password);
+        TUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TUser.setText("");
+            }
+        });
     }
 
     public void Registrazione(View v){
@@ -41,11 +75,18 @@ public class MainActivity extends AppCompatActivity {
            Toast.makeText(getApplicationContext(),"Password o Email errate", Toast.LENGTH_LONG);
            }
          */
+        Intent i= new Intent(this, MainSupermercato.class);
+        startActivity(i);
 
     }
-    public void log_out(View v){
-        Intent i = new Intent(this,MainActivity.class);
-        startActivity(i);
+    public void CopyDB(InputStream inputStream, OutputStream outputStream) throws IOException {
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) > 0) {
+            outputStream.write(buffer, 0, length);
+        }
+        inputStream.close();
+        outputStream.close();
     }
 
 }

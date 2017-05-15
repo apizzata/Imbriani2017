@@ -6,16 +6,30 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
+        android:id="@+id/info_nome"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nome"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="29dp" />
+
+    <EditText
         android:id="@+id/info_indirizzo"
-        android:layout_width="346dp"
-        android:layout_height="45dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Indirizzo"
@@ -24,8 +38,10 @@
 
     <EditText
         android:id="@+id/info_Provincia"
-        android:layout_width="346dp"
-        android:layout_height="45dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="150dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Provincia"
@@ -34,31 +50,25 @@
 
     <EditText
         android:id="@+id/info_Comune"
-        android:layout_width="346dp"
-        android:layout_height="45dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="200dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Comune"
         tools:layout_editor_absoluteX="19dp"
         tools:layout_editor_absoluteY="147dp" />
 
-    <EditText
-        android:id="@+id/info_nome"
-        android:layout_width="346dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nome"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="29dp" />
-
     <Button
         android:id="@+id/B_aggiorna_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="275dp"
         android:onClick="AggiornaInfo"
         android:text="Aggiorna"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="304dp" />
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
     </ScrollView>
