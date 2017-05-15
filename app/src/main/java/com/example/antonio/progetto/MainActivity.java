@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         });
         db.open();
         long x = db.inserisciEnti(null, null, null, null, "deco2", "cacca");
-        Cursor ca=db.ottieniEnticonUtente("deco2");
-        Toast.makeText(getApplicationContext(),ca.getString(5),Toast.LENGTH_LONG).show();
+      //  Cursor ca=db.ottieniEnticonUtente("deco2");
+      //  Toast.makeText(getApplicationContext(),ca.getString(5),Toast.LENGTH_LONG).show();
     }
     public void Registrazione(View v){
         Intent i= new Intent(this, Registrazione.class);
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         String user= TUser.getText().toString();
         String pass= TPass.getText().toString();
         /*
-        Controllo con base di dati  //TODO Aggiungere controllo base dati
+        Controllo con base di dati  //TODO aggiungere radiobutton Ente, Supermercato
         if(isOk){
         Intent i = new Intent(this, Classe);
         startActivity(i);
@@ -86,13 +86,14 @@ public class MainActivity extends AppCompatActivity {
            }
          */
 
-        Cursor c= db.ottieniSupermercaticonUtente(user);
-        if(!pass.equals(c.getString(5))||c.isNull(5)){
+        Cursor c= db.ottieniEnticonUtente(user);
+
+        if(c.moveToFirst()&&pass.equals(c.getString(5))){
+            Intent i = new Intent(this, MainSupermercato.class);
+            startActivity(i);
+        } else {
             Toast.makeText(getApplicationContext(),"Password o Utente errato",Toast.LENGTH_LONG).show();
         }
-        Intent i= new Intent(this, MainSupermercato.class);
-        startActivity(i);
-
     }
     public void CopyDB(InputStream inputStream, OutputStream outputStream) throws IOException {
         byte[] buffer = new byte[1024];

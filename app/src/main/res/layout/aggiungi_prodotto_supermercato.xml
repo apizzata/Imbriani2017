@@ -26,7 +26,8 @@
         android:layout_marginTop="165dp"
         android:ems="10"
         android:inputType="date"
-        android:text="Data"
+        android:text="Giorno"
+        android:textAlignment="center"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="85dp" />
 
@@ -38,7 +39,8 @@
         android:layout_marginTop="165dp"
         android:ems="10"
         android:inputType="date"
-        android:text="Data"
+        android:text="Mese"
+        android:textAlignment="center"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="85dp" />
 
@@ -51,6 +53,7 @@
         android:ems="10"
         android:inputType="date"
         android:text="Data"
+        android:textAlignment="center"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="85dp" />
 

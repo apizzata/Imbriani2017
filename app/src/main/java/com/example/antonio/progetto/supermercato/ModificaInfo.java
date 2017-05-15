@@ -31,25 +31,29 @@ public class ModificaInfo extends AppCompatActivity {
         nome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nome.setText("");
+                if (nome.getText().toString().equals("Nome"))
+                    nome.setText("");
             }
         });
         indirizzo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                indirizzo.setText("");
+                if (indirizzo.getText().toString().equals("Indirizzo"))
+                    indirizzo.setText("");
             }
         });
         provincia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                provincia.setText("");
+                if (provincia.getText().toString().equals("Provincia"))
+                    provincia.setText("");
             }
         });
         comune.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comune.setText("");
+                if (comune.getText().toString().equals("Comune"))
+                    comune.setText("");
             }
         });
     }

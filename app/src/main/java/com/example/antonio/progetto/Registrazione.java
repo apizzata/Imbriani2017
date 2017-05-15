@@ -23,10 +23,12 @@ public class Registrazione extends AppCompatActivity {
     RadioButton sup,ente;
     RadioGroup group;
     Button reg;
+    private GestioneDB db;
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_form);
+        db= new GestioneDB(this);
         user= (EditText) findViewById(R.id.registration_user);
         pass= (EditText) findViewById(R.id.registration_password);
         sup= (RadioButton) findViewById(R.id.radio_button_sup);
@@ -47,20 +49,24 @@ public class Registrazione extends AppCompatActivity {
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user.setText("");
+                if (user.getText().toString().equals("Utente"))
+                    user.setText("");
             }
         });
+
 
     }
 
     public void Registra(View v){
         String User= user.getText().toString();
         String Pass= pass.getText().toString();
-        if(sup.isChecked()&&!ente.isChecked()){
+        if(sup.isChecked()){
             //registra tra i supp //TODO aggiungere insert
+
             Toast.makeText(getApplicationContext(),"Registrazione riuscita", Toast.LENGTH_SHORT).show();
-        }else if (ente.isChecked() && !sup.isChecked()){
+        }else if (ente.isChecked() ){
             //registra tra gli enti //TODO aggiungere insert
+            //db.inserisciEnti(null,null,null,null,User,Pass);
             Toast.makeText(getApplicationContext(),"Registrazione riuscita", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getApplicationContext(),"Seleziona una tra le due scelte", Toast.LENGTH_LONG).show();

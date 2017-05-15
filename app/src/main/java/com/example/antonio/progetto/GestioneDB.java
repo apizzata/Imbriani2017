@@ -113,7 +113,8 @@ public class GestioneDB {
         return db.query(DATABASE_TABELLA,new String[] {"NOME", "INDIRIZZO", "COMUNE", "PROVINCIA", "EMAIL", "PASSWORD"}, null, null, null, null, null);
     }
     public Cursor ottieniEnticonUtente(String utente){
-        Cursor mCursore = db.query(true, DATABASE_TABELLA, new String[] {"NOME", "INDIRIZZO", "COMUNE", "PROVINCIA", "EMAIL", "PASSWORD"}, "EMAIL ="+utente, null, null, null, null, null);
+        //Cursor mCursore = db.query(true, DATABASE_TABELLA, new String[] {"NOME", "INDIRIZZO", "COMUNE", "PROVINCIA", "EMAIL", "PASSWORD"}, "EMAIL ="+utente, null, null, null, null, null);
+        Cursor mCursore= db.rawQuery("SELECT * FROM ENTI WHERE EMAIL = '"+utente+"'", null);
         if (mCursore != null) {
             mCursore.moveToFirst();
         }

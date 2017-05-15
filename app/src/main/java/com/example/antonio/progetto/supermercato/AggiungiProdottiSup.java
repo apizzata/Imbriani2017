@@ -33,25 +33,29 @@ public class AggiungiProdottiSup extends AppCompatActivity{
         NomeProdotto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NomeProdotto.setText("");
+                if (NomeProdotto.getText().toString().equals("Nome"))
+                    NomeProdotto.setText("");
             }
         });
         GiornoScadenza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GiornoScadenza.setText("");
+                if (GiornoScadenza.getText().toString().equals("Giorno"))
+                    GiornoScadenza.setText("");
             }
         });
         MeseScadenza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MeseScadenza.setText("");
+                if (MeseScadenza.getText().toString().equals("Mese"))
+                    MeseScadenza.setText("");
             }
         });
         AnnoScadenza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnnoScadenza.setText("");
+                if (AnnoScadenza.getText().toString().equals("Anno"))
+                    AnnoScadenza.setText("");
             }
         });
 
