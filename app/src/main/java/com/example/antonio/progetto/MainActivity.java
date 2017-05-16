@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.antonio.progetto.ente.MainEnte;
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button BLogin, BRegistrazione;
     EditText TUser, TPass;
+    RadioButton RSupermercato,REnte;
+    RadioGroup RGroup;
     private GestioneDB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
         BRegistrazione = (Button) findViewById(R.id.Registrazione);
         TUser = (EditText) findViewById(R.id.Email);
         TPass = (EditText) findViewById(R.id.Password);
-
+        REnte=(RadioButton) findViewById(R.id.ente_main_acticity);
+        RSupermercato=(RadioButton) findViewById(R.id.sup_main_activity);
+        RGroup=(RadioGroup) findViewById(R.id.radioGroup_main);
 
         TUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,10 +69,33 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        RGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if(REnte.isChecked()){
+                    RSupermercato.setChecked(false);
+                }else if(RSupermercato.isChecked()){
+                    REnte.setChecked(false);
+                }
+            }
+        });
         db.open();
-        long x = db.inserisciEnti(null, null, null, null, "deco2", "cacca");
-      //  Cursor ca=db.ottieniEnticonUtente("deco2");
-      //  Toast.makeText(getApplicationContext(),ca.getString(5),Toast.LENGTH_LONG).show();
+       // long x = db.inserisciEnti(null, null, null, null, "deco2", "cacca");
+        //db.insertProdotto("Pasta","Barilla2","deco",20,"NA123425",null,"14-02-2019",null);
+        //db.insertSupermercato(null,null,null,null,"piccolo","12345");
+          Cursor ca=db.ottieniSupermercati();
+
+        if (ca.moveToFirst())
+        {
+            do {
+                Toast.makeText(this,
+                        "id: " + ca.getString(0) + "\n" +
+                                "Nome: " + ca.getString(1) + "\n" +
+                                "Indirizzo: " + ca.getString(2),
+                        Toast.LENGTH_LONG).show();
+            } while (ca.moveToNext());
+        }
+       // Toast.makeText(getApplicationContext(),ca.getString(5),Toast.LENGTH_LONG).show();
     }
     public void Registrazione(View v){
         Intent i= new Intent(this, Registrazione.class);
@@ -76,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         String user= TUser.getText().toString();
         String pass= TPass.getText().toString();
         /*
-        Controllo con base di dati  //TODO aggiungere radiobutton Ente, Supermercato
+        Controllo con base di dati
         if(isOk){
         Intent i = new Intent(this, Classe);
         startActivity(i);
@@ -85,11 +115,13 @@ public class MainActivity extends AppCompatActivity {
            Toast.makeText(getApplicationContext(),"Password o Email errate", Toast.LENGTH_LONG);
            }
          */
+        //TODO Se è un supermercato va a mainsupermercato e passa con extras l'utente, la stessa cosa per ente solo che cambia con mainente
 
-        Cursor c= db.ottieniEnticonUtente(user);
+        Cursor c= db.ottieniSupermercaticonUtente(user);
 
         if(c.moveToFirst()&&pass.equals(c.getString(5))){
             Intent i = new Intent(this, MainSupermercato.class);
+            //i.putExtra("Supermercato",user);
             startActivity(i);
         } else {
             Toast.makeText(getApplicationContext(),"Password o Utente errato",Toast.LENGTH_LONG).show();

@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:onClick="Registrazione"
         android:text="Registrati"
         tools:layout_editor_absoluteX="123dp"
@@ -52,13 +52,38 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_below="@+id/radioGroup_main"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:onClick="Accesso"
         android:text="Accedi"
+        tools:layout_editor_absoluteX="123dp" />
+<RadioGroup
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/Email"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/radioGroup_main">
 
-        tools:layout_editor_absoluteX="123dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/Password"
+    <RadioButton
+        android:id="@+id/sup_main_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="18dp"
+        android:text="Supermercato" />
+
+    <RadioButton
+        android:id="@+id/ente_main_acticity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text="Ente Caritatevole"
+        android:layout_below="@+id/sup_main_activity"
         android:layout_centerHorizontal="true" />
-
+</RadioGroup>
 
 </RelativeLayout>

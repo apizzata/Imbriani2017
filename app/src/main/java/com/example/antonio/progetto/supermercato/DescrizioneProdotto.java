@@ -10,20 +10,26 @@ import android.widget.TextView;
 
 import com.example.antonio.progetto.R;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Antonio on 15/05/2017.
  */
 
 public class DescrizioneProdotto extends AppCompatActivity {
 
-    TextView txt;
+    TextView Nome,Scadenza,Marca,Quantita,Supermercato;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.descrizione_prodotto);
-        txt=(TextView) findViewById(R.id.descr_obj);
+        Nome=(TextView) findViewById(R.id.nome_obj_descr);
+        Scadenza=(TextView) findViewById(R.id.scadenza_obj_desscr);
+        Marca=(TextView) findViewById(R.id.marca_obj_descr);
+        Quantita=(TextView) findViewById(R.id.quantita_obj_descr);
+        Supermercato=(TextView) findViewById(R.id.sup_obj_descr);
         Intent i= getIntent();
         String dato= i.getExtras().getString("Nome");
-        txt.setText(dato);
+        Nome.setText(dato);
     }
 }

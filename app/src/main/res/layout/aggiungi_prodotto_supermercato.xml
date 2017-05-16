@@ -7,6 +7,38 @@
     android:layout_height="match_parent">
 
     <EditText
+        android:id="@+id/lotto_nuovo_prod"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="230dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Lotto"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/marca_nuovo_prod"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="270dp"
+        android:layout_marginTop="230dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Marca"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
         android:id="@+id/nome_nuovo_prod"
         android:layout_width="350dp"
         android:layout_height="50dp"
@@ -61,10 +93,25 @@
         android:id="@+id/b_aggiungi_nuovo_prod_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="230dp"
         android:onClick="onClickAggiungi"
         android:text="Aggiungi"
         tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="207dp" />
+        tools:layout_editor_absoluteY="207dp"
+        android:layout_below="@+id/quantita_nuovo_prod"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp" />
+
+    <EditText
+        android:id="@+id/quantita_nuovo_prod"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/giorno_nuovo_prod"
+        android:layout_alignStart="@+id/giorno_nuovo_prod"
+        android:layout_below="@+id/giorno_nuovo_prod"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        tools:text="Quantità" />
+
 </RelativeLayout>
