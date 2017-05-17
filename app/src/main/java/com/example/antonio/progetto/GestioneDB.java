@@ -118,7 +118,7 @@ public class GestioneDB {
         }
         else {
             ContentValues values = new ContentValues();
-            values.put("ID", 0);
+            
             values.put("NOME", nome);
             values.put("MARCA", marca);
             values.put("SUPERMERCATO_E", supermercato);
