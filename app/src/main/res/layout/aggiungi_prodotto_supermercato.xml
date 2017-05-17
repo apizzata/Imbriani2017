@@ -58,7 +58,7 @@
         android:layout_marginTop="165dp"
         android:ems="10"
         android:inputType="date"
-        android:text="Giorno"
+        android:text="gg"
         android:textAlignment="center"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="85dp" />
@@ -71,7 +71,7 @@
         android:layout_marginTop="165dp"
         android:ems="10"
         android:inputType="date"
-        android:text="Mese"
+        android:text="mm"
         android:textAlignment="center"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="85dp" />
@@ -84,7 +84,7 @@
         android:layout_marginTop="165dp"
         android:ems="10"
         android:inputType="date"
-        android:text="Data"
+        android:text="aaaa"
         android:textAlignment="center"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="85dp" />
@@ -111,7 +111,7 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:inputType="number"
-        android:textAlignment="center"
-        tools:text="Quantità" />
+        android:text="Quantità"
+        android:textAlignment="center" />
 
 </RelativeLayout>

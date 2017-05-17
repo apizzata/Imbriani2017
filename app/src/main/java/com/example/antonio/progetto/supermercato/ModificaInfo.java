@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.antonio.progetto.GestioneDB;
 import com.example.antonio.progetto.R;
 
 /**
@@ -18,11 +19,15 @@ public class ModificaInfo extends AppCompatActivity {
 
     EditText nome, indirizzo, provincia, comune;
     Button BAggiorna;
+    GestioneDB db;
+    String sup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modifica_info);
+        db= new GestioneDB(this);
+        sup=getIntent().getExtras().getString("Supermercato");
         nome= (EditText) findViewById(R.id.info_nome);
         indirizzo=(EditText) findViewById(R.id.info_indirizzo);
         provincia= (EditText) findViewById(R.id.info_Provincia);
@@ -60,6 +65,8 @@ public class ModificaInfo extends AppCompatActivity {
 
     public void AggiornaInfo(View v){
         //Db.insert(nome.getText().toString(),....);//TODO aggiungere insert
+        db.open();
+
         Toast.makeText(getApplicationContext(),"Modifica riuscita", Toast.LENGTH_SHORT);
     }
 }

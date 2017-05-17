@@ -23,12 +23,13 @@
 
     <ListView
         android:id="@+id/Lista_prodotti"
-        android:layout_width="334dp"
-        android:layout_height="440dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@+id/b_info_sup"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="44dp"
-        android:paddingTop="-10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:paddingTop="0dp"
         tools:layout_editor_absoluteX="25dp"
         tools:layout_editor_absoluteY="16dp" />
 

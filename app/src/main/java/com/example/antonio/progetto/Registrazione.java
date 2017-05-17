@@ -2,6 +2,7 @@ package com.example.antonio.progetto;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.IdRes;
@@ -29,6 +30,7 @@ public class Registrazione extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_form);
         db= new GestioneDB(this);
+
         user= (EditText) findViewById(R.id.registration_user);
         pass= (EditText) findViewById(R.id.registration_password);
         sup= (RadioButton) findViewById(R.id.radio_button_sup);
@@ -49,24 +51,30 @@ public class Registrazione extends AppCompatActivity {
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (user.getText().toString().equals("Utente"))
+                if (user.getText().toString().equals("Username"))
                     user.setText("");
             }
         });
 
 
     }
-
+    public void onBackPressed(){
+        super.onBackPressed();
+        db.close();
+    }
     public void Registra(View v){
         String User= user.getText().toString();
         String Pass= pass.getText().toString();
+        db.open();
         if(sup.isChecked()){
             //registra tra i supp //TODO aggiungere insert
-
+            db.insertSupermercato(null,null,null,null,User,Pass);
+            db.close();
             Toast.makeText(getApplicationContext(),"Registrazione riuscita", Toast.LENGTH_SHORT).show();
         }else if (ente.isChecked() ){
             //registra tra gli enti //TODO aggiungere insert
-            //db.inserisciEnti(null,null,null,null,User,Pass);
+            db.inserisciEnti(null,null,null,null,User,Pass);
+            db.close();
             Toast.makeText(getApplicationContext(),"Registrazione riuscita", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getApplicationContext(),"Seleziona una tra le due scelte", Toast.LENGTH_LONG).show();

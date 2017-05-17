@@ -31,6 +31,7 @@ public class AggiungiProdottiSup extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aggiungi_prodotto_supermercato);
         db= new GestioneDB(this);
+
         NomeProdotto = (EditText) findViewById(R.id.nome_nuovo_prod);
         GiornoScadenza= (EditText) findViewById(R.id.giorno_nuovo_prod);
         MeseScadenza= (EditText) findViewById(R.id.mese_nuovo_prod);
@@ -49,21 +50,21 @@ public class AggiungiProdottiSup extends AppCompatActivity{
         GiornoScadenza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (GiornoScadenza.getText().toString().equals("Giorno"))
+                if (GiornoScadenza.getText().toString().equals("gg"))
                     GiornoScadenza.setText("");
             }
         });
         MeseScadenza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (MeseScadenza.getText().toString().equals("Mese"))
+                if (MeseScadenza.getText().toString().equals("mm"))
                     MeseScadenza.setText("");
             }
         });
         AnnoScadenza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (AnnoScadenza.getText().toString().equals("Anno"))
+                if (AnnoScadenza.getText().toString().equals("aaaa"))
                     AnnoScadenza.setText("");
             }
         });
@@ -99,11 +100,19 @@ public class AggiungiProdottiSup extends AppCompatActivity{
         String lotto= LottoProdotto.getText().toString();
         String marca= MarcaProdotto.getText().toString();
 
-
-        db.insertProdotto(nome,marca,sup,quantita,lotto,null,data,null);
-        Cursor c =db.ottieniProdottiByNome(nome,marca);
-        Toast.makeText(getApplicationContext(),c.getString(1).toString()+ " "+ c.getString(2).toString() , Toast.LENGTH_SHORT).show();
+        if(!nome.equals(null)&&!nome.equals("\\s+")&&!marca.equals(null)&&!marca.equals("\\s+")&&!data.equals(null)&&!data.equals("\\s+")&&quantita!=0){
+            db.open();
+            db.insertProdotto(nome,marca,sup,quantita,lotto,null,data,null);
+            Toast.makeText(this,"Inserimento riuscito",Toast.LENGTH_SHORT).show();
+            db.close();
+        }else {
+            Toast.makeText(this,"Inserire tutti i dati",Toast.LENGTH_LONG).show();
+        }
+        //db.insertProdotto(nome,marca,sup,quantita,lotto,null,data,null);
+      // Cursor c =db.ottieniProdottiByNome(nome,marca);
+        //Toast.makeText(getApplicationContext(),c.getString(1).toString()+ " "+ c.getString(2).toString() , Toast.LENGTH_SHORT).show();
 
     }
+
 
 }

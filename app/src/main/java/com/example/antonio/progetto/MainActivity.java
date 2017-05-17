@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Parcelable;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -79,11 +81,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        db.open();
+
        // long x = db.inserisciEnti(null, null, null, null, "deco2", "cacca");
-        //db.insertProdotto("Pasta","Barilla2","deco",20,"NA123425",null,"14-02-2019",null);
-        //db.insertSupermercato(null,null,null,null,"piccolo","12345");
-          Cursor ca=db.ottieniSupermercati();
+       // db.insertProdotto("Mais22","Bonduelle","deco",220,"PE123425",null,"11-12-2020",null);
+        db.open();
+
+
+        db.insertPrelevati(0,"bla",74);
+         Cursor ca=db.ottieniPrelevati();
 
         if (ca.moveToFirst())
         {
@@ -91,14 +96,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this,
                         "id: " + ca.getString(0) + "\n" +
                                 "Nome: " + ca.getString(1) + "\n" +
-                                "Indirizzo: " + ca.getString(2),
+                                "Indirizzo: " + ca.getString(2)+ca.getString(3),
                         Toast.LENGTH_LONG).show();
             } while (ca.moveToNext());
         }
        // Toast.makeText(getApplicationContext(),ca.getString(5),Toast.LENGTH_LONG).show();
-    }
+   }
     public void Registrazione(View v){
         Intent i= new Intent(this, Registrazione.class);
+        db.close();
         startActivity(i);
     }
 
@@ -116,15 +122,32 @@ public class MainActivity extends AppCompatActivity {
            }
          */
         //TODO Se è un supermercato va a mainsupermercato e passa con extras l'utente, la stessa cosa per ente solo che cambia con mainente
+        if(RSupermercato.isChecked()) {
+            db.open();
+            Cursor c = db.ottieniSupermercaticonUtente(user);
 
-        Cursor c= db.ottieniSupermercaticonUtente(user);
+            if (c.moveToFirst() && pass.equals(c.getString(5))) {
+                Intent i = new Intent(this, MainSupermercato.class);
+                i.putExtra("Supermercato", user);
+                startActivity(i);
+            } else {
+                Toast.makeText(getApplicationContext(), "Password o Utente errato", Toast.LENGTH_LONG).show();
+            }
+            db.close();
+        }else if(REnte.isChecked()){
+            db.open();
+            Cursor c = db.ottieniEnticonUtente(user);
 
-        if(c.moveToFirst()&&pass.equals(c.getString(5))){
-            Intent i = new Intent(this, MainSupermercato.class);
-            //i.putExtra("Supermercato",user);
-            startActivity(i);
-        } else {
-            Toast.makeText(getApplicationContext(),"Password o Utente errato",Toast.LENGTH_LONG).show();
+            if (c.moveToFirst() && pass.equals(c.getString(5))) {
+                Intent i = new Intent(this, MainEnte.class);
+                i.putExtra("Ente", user);
+                startActivity(i);
+            } else {
+                Toast.makeText(getApplicationContext(), "Password o Utente errato", Toast.LENGTH_LONG).show();
+            }
+            db.close();
+        }else{
+            Toast.makeText(this,"Seleziona una delle due scelte",Toast.LENGTH_LONG).show();
         }
     }
     public void CopyDB(InputStream inputStream, OutputStream outputStream) throws IOException {
@@ -137,4 +160,10 @@ public class MainActivity extends AppCompatActivity {
         outputStream.close();
     }
 
+    public void onBackPressed(){
+        super.onBackPressed();
+        db.close();
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
 }

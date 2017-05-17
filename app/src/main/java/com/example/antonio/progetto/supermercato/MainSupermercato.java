@@ -34,16 +34,19 @@ public class MainSupermercato extends AppCompatActivity {
     ListView lista;
     private GestioneDB db;
     private String sup;
+    private  Vector<Integer> Id;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_supermercato);
         db=new GestioneDB(this);
+        db.open();
         aggiungi= (Button) findViewById(R.id.b_aggiungi_prod_sup);
         mod_info=(Button) findViewById(R.id.b_info_sup);
         lista=(ListView) findViewById(R.id.Lista_prodotti);
         //Creo lista con adapter per aggiungere elemento si usa prodotti_list.add(numero, elemento);
+
         String[] prodotti= {};
         final List<String> prodotti_list= new ArrayList<String>(Arrays.asList(prodotti));
         final ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,prodotti_list);
@@ -51,23 +54,46 @@ public class MainSupermercato extends AppCompatActivity {
         Intent k=getIntent();
         sup=k.getExtras().getString("Supermercato");
         Cursor cursor=db.listaInseritiSupermercato(sup);
-
-        /*HashMap<Integer,Vector<String>> mappa= new HashMap<Integer, Vector<String>>();
+       // Toast.makeText(getApplicationContext(),cursor.getColumnCount(),Toast.LENGTH_SHORT).show();
+       /* if (cursor.moveToFirst())
+        {
+            do {
+                Toast.makeText(this,
+                        "id: " + cursor.getString(0) + "\n" +
+                                "Nome: " + cursor.getString(1) + "\n" +
+                                "Indirizzo: " + cursor.getString(2)+ "\n" +
+                                "Indirizzo: " + cursor.getString(3)+ "\n" +
+                                "Indirizzo: " + cursor.getString(4)+ "\n" +
+                                "Indirizzo: " + cursor.getString(5)+ "\n" +
+                                "Indirizzo: " + cursor.getString(6)+ "\n" +
+                                "Indirizzo: " + cursor.getString(7)+ "\n" +
+                                "Indirizzo: " + cursor.getString(8)+ "\n",
+                        Toast.LENGTH_LONG).show();
+            } while (cursor.moveToNext());
+        }
+        */
+      HashMap<Integer,String> mappa= new HashMap<Integer, String>();
         int i=0;
+      //  Vector<String>vett=new Vector<>();
+        Id= new Vector<Integer>();
 
-        Vector<String> vett= new Vector<String>();
         if (cursor.moveToFirst())
         {
             do {
-                for(int j=0;j<cursor.getColumnCount();j++){
-                    vett.add(j,cursor.getString(j));
-                }
-                mappa.put(i,vett);
-                i++;
+                    //Toast.makeText(getApplicationContext(),vett.get(j),Toast.LENGTH_SHORT).show();
 
+              //mappa.put(i,cursor.getString(0)+" "+cursor.getString(1)+" "+cursor.getString(2)+" "+cursor.getString(3)+" "+cursor.getString(4)+" "+cursor.getString(5)+" "+cursor.getString(6)+" "+cursor.getString(7)+" "+cursor.getString(8));
+                mappa.put(i,cursor.getString(1)+" "+cursor.getString(2));
+
+                //Toast.makeText(getApplicationContext(),mappa.get(i).get(0)+mappa.get(i).get(1)+mappa.get(i).get(2),Toast.LENGTH_SHORT).show();
+               Id.addElement(cursor.getInt(0));
+                i++;
             } while (cursor.moveToNext());
         }
-*/
+       // Toast.makeText(this,mappa.get(0).get(0) + " " + mappa.get(0).get(1) + " " + mappa.get(0).get(2) + " " + mappa.get(0).get(3) + " " + mappa.get(0).get(4) + " " + mappa.get(0).get(5) + " " + mappa.get(0).get(6) + " " + mappa.get(0).get(7) + " " + mappa.get(0).get(8),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,mappa.get(1).get(0) + " " + mappa.get(1).get(1) + " " + mappa.get(1).get(2) + " " + mappa.get(1).get(3) + " " + mappa.get(1).get(4) + " " + mappa.get(1).get(5) + " " + mappa.get(1).get(6) + " " + mappa.get(1).get(7) + " " + mappa.get(1).get(8),Toast.LENGTH_SHORT).show();
+
+
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -75,21 +101,114 @@ public class MainSupermercato extends AppCompatActivity {
                 String obj= o.toString();
                 //Toast.makeText(getApplicationContext(),obj,Toast.LENGTH_LONG).show();
                 Intent i=new Intent(MainSupermercato.this,DescrizioneProdotto.class);
-                i.putExtra("Nome",obj);
+               // i.putExtra("Nome",obj);
+                i.putExtra("Id",Id.get(position));
                 startActivity(i);
             }
         });
-        prodotti_list.add(0,"Passata di Pomodori Marca: Mutti Quantià: 3 Data di scadenza: 20/07/2017");
-        prodotti_list.add(1,"Tonno Marca: Rio Mare Quantià: 300 Data di scadenza: 20/08/2018  ");
-        Vector<String> prova= new Vector<String>();
-       // prova= mappa.get(0);
-        //prodotti_list.add(2,prova.firstElement()+prova.lastElement()+prova.get(5));
+      //  prodotti_list.add(0,"Passata di Pomodori Marca: Mutti Quantià: 3 Data di scadenza: 20/07/2017");
+       // prodotti_list.add(1,"Tonno Marca: Rio Mare Quantià: 300 Data di scadenza: 20/08/2018  ");
+     //   for(int j=0;j<mappa.size();j++){
+       //     Toast.makeText(this,mappa.get(j).get(0) + " " + mappa.get(j).get(1) + " " + mappa.get(j).get(2) + " " + mappa.get(j).get(3) + " " + mappa.get(j).get(4) + " " + mappa.get(j).get(5) + " " + mappa.get(j).get(6) + " " + mappa.get(j).get(7) + " " + mappa.get(j).get(8),Toast.LENGTH_SHORT).show();
+        //}
+        for(int ka=0;ka<mappa.size();ka++) {
+            prodotti_list.add(ka, mappa.get(ka)+Id.get(ka));
+
+        }
+
+
+        // prodotti_list.add(0,mappa.get(0).get(0) + " " + mappa.get(0).get(1) + " " + mappa.get(0).get(2) + " " + mappa.get(0).get(3) + " " + mappa.get(0).get(4) + " " + mappa.get(0).get(5) + " " + mappa.get(0).get(6) + " " + mappa.get(0).get(7) + " " + mappa.get(0).get(8));
+        //prodotti_list.add(1,mappa.get(1).get(0) + " " + mappa.get(1).get(1) + " " + mappa.get(1).get(2) + " " + mappa.get(1).get(3) + " " + mappa.get(1).get(4) + " " + mappa.get(1).get(5) + " " + mappa.get(1).get(6) + " " + mappa.get(1).get(7) + " " + mappa.get(1).get(8));
+        //Toast.makeText(this,mappa.get(0).get(0) + " " + mappa.get(0).get(1) + " " + mappa.get(0).get(2) + " " + mappa.get(0).get(3) + " " + mappa.get(0).get(4) + " " + mappa.get(0).get(5) + " " + mappa.get(0).get(6) + " " + mappa.get(0).get(7) + " " + mappa.get(0).get(8),Toast.LENGTH_SHORT).show();
 
     }
 
+    public void onResume(){
+        super.onResume();
+
+        db.open();
+
+        //Creo lista con adapter per aggiungere elemento si usa prodotti_list.add(numero, elemento);
+
+        String[] prodotti= {};
+        final List<String> prodotti_list= new ArrayList<String>(Arrays.asList(prodotti));
+        final ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,prodotti_list);
+        lista.setAdapter(adapter);
+        Intent k=getIntent();
+        sup=k.getExtras().getString("Supermercato");
+        Cursor cursor=db.listaInseritiSupermercato(sup);
+        // Toast.makeText(getApplicationContext(),cursor.getColumnCount(),Toast.LENGTH_SHORT).show();
+       /* if (cursor.moveToFirst())
+        {
+            do {
+                Toast.makeText(this,
+                        "id: " + cursor.getString(0) + "\n" +
+                                "Nome: " + cursor.getString(1) + "\n" +
+                                "Indirizzo: " + cursor.getString(2)+ "\n" +
+                                "Indirizzo: " + cursor.getString(3)+ "\n" +
+                                "Indirizzo: " + cursor.getString(4)+ "\n" +
+                                "Indirizzo: " + cursor.getString(5)+ "\n" +
+                                "Indirizzo: " + cursor.getString(6)+ "\n" +
+                                "Indirizzo: " + cursor.getString(7)+ "\n" +
+                                "Indirizzo: " + cursor.getString(8)+ "\n",
+                        Toast.LENGTH_LONG).show();
+            } while (cursor.moveToNext());
+        }
+        */
+        HashMap<Integer,String> mappa= new HashMap<Integer, String>();
+        int i=0;
+        //  Vector<String>vett=new Vector<>();
+        Id= new Vector<Integer>();
+
+        if (cursor.moveToFirst())
+        {
+            do {
+                //Toast.makeText(getApplicationContext(),vett.get(j),Toast.LENGTH_SHORT).show();
+
+                //mappa.put(i,cursor.getString(0)+" "+cursor.getString(1)+" "+cursor.getString(2)+" "+cursor.getString(3)+" "+cursor.getString(4)+" "+cursor.getString(5)+" "+cursor.getString(6)+" "+cursor.getString(7)+" "+cursor.getString(8));
+                mappa.put(i,cursor.getString(1)+" "+cursor.getString(2));
+
+                //Toast.makeText(getApplicationContext(),mappa.get(i).get(0)+mappa.get(i).get(1)+mappa.get(i).get(2),Toast.LENGTH_SHORT).show();
+                Id.addElement(cursor.getInt(0));
+                i++;
+            } while (cursor.moveToNext());
+        }
+        // Toast.makeText(this,mappa.get(0).get(0) + " " + mappa.get(0).get(1) + " " + mappa.get(0).get(2) + " " + mappa.get(0).get(3) + " " + mappa.get(0).get(4) + " " + mappa.get(0).get(5) + " " + mappa.get(0).get(6) + " " + mappa.get(0).get(7) + " " + mappa.get(0).get(8),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,mappa.get(1).get(0) + " " + mappa.get(1).get(1) + " " + mappa.get(1).get(2) + " " + mappa.get(1).get(3) + " " + mappa.get(1).get(4) + " " + mappa.get(1).get(5) + " " + mappa.get(1).get(6) + " " + mappa.get(1).get(7) + " " + mappa.get(1).get(8),Toast.LENGTH_SHORT).show();
+
+
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o=  lista.getItemAtPosition(position);
+                String obj= o.toString();
+                //Toast.makeText(getApplicationContext(),obj,Toast.LENGTH_LONG).show();
+                Intent i=new Intent(MainSupermercato.this,DescrizioneProdotto.class);
+                // i.putExtra("Nome",obj);
+                i.putExtra("Id",Id.get(position));
+                startActivity(i);
+            }
+        });
+        //  prodotti_list.add(0,"Passata di Pomodori Marca: Mutti Quantià: 3 Data di scadenza: 20/07/2017");
+        // prodotti_list.add(1,"Tonno Marca: Rio Mare Quantià: 300 Data di scadenza: 20/08/2018  ");
+        //   for(int j=0;j<mappa.size();j++){
+        //     Toast.makeText(this,mappa.get(j).get(0) + " " + mappa.get(j).get(1) + " " + mappa.get(j).get(2) + " " + mappa.get(j).get(3) + " " + mappa.get(j).get(4) + " " + mappa.get(j).get(5) + " " + mappa.get(j).get(6) + " " + mappa.get(j).get(7) + " " + mappa.get(j).get(8),Toast.LENGTH_SHORT).show();
+        //}
+        for(int ka=0;ka<mappa.size();ka++) {
+            prodotti_list.add(ka, mappa.get(ka)+Id.get(ka));
+
+        }
+
+
+        // prodotti_list.add(0,mappa.get(0).get(0) + " " + mappa.get(0).get(1) + " " + mappa.get(0).get(2) + " " + mappa.get(0).get(3) + " " + mappa.get(0).get(4) + " " + mappa.get(0).get(5) + " " + mappa.get(0).get(6) + " " + mappa.get(0).get(7) + " " + mappa.get(0).get(8));
+        //prodotti_list.add(1,mappa.get(1).get(0) + " " + mappa.get(1).get(1) + " " + mappa.get(1).get(2) + " " + mappa.get(1).get(3) + " " + mappa.get(1).get(4) + " " + mappa.get(1).get(5) + " " + mappa.get(1).get(6) + " " + mappa.get(1).get(7) + " " + mappa.get(1).get(8));
+        //Toast.makeText(this,mappa.get(0).get(0) + " " + mappa.get(0).get(1) + " " + mappa.get(0).get(2) + " " + mappa.get(0).get(3) + " " + mappa.get(0).get(4) + " " + mappa.get(0).get(5) + " " + mappa.get(0).get(6) + " " + mappa.get(0).get(7) + " " + mappa.get(0).get(8),Toast.LENGTH_SHORT).show();
+
+    }
 
     public void onClickInfo(View v){
         Intent i= new Intent(this,ModificaInfo.class);
+        i.putExtra("Supermercato",sup);
         startActivity(i);
     }
     public void log_out_sup(View v){
