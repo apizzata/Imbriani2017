@@ -94,19 +94,20 @@ public class AggiungiProdottiSup extends AppCompatActivity{
     }
 
     public  void onClickAggiungi(View v) {
-        String nome = NomeProdotto.getText().toString().toLowerCase();
-        String data= GiornoScadenza.getText().toString()+"-"+MeseScadenza.getText().toString()+"-"+AnnoScadenza.getText().toString();
-        Integer quantita= Integer.parseInt(QuantitaProdotto.getText().toString());
-        String lotto= LottoProdotto.getText().toString().toLowerCase();
-        String marca= MarcaProdotto.getText().toString().toLowerCase();
 
-        if(!nome.equals(null)&&!nome.equals("\\s+")&&!marca.equals(null)&&!marca.equals("\\s+")&&!data.equals(null)&&!data.equals("\\s+")&&quantita!=0){
+
+        String nome = NomeProdotto.getText().toString().toLowerCase();
+        String data = GiornoScadenza.getText().toString() + "-" + MeseScadenza.getText().toString() + "-" + AnnoScadenza.getText().toString();
+        Integer quantita = Integer.parseInt(QuantitaProdotto.getText().toString());
+        String lotto = LottoProdotto.getText().toString().toLowerCase();
+        String marca = MarcaProdotto.getText().toString().toLowerCase();
+        if(!nome.equals(null)&&!nome.equals("\\s+")&&!marca.equals(null)&&!marca.equals("\\s+")&&!data.equals(null)&&!data.equals("\\s+")&&quantita!=0&&Integer.parseInt(MeseScadenza.getText().toString())>=1 &&Integer.parseInt(MeseScadenza.getText().toString())<=12){
             db.open();
             db.insertProdotto(nome,marca,sup,quantita,lotto,null,data,null);
             Toast.makeText(this,"Inserimento riuscito",Toast.LENGTH_SHORT).show();
             db.close();
         }else {
-            Toast.makeText(this,"Inserire tutti i dati",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Inserire tutti i dati correttamente",Toast.LENGTH_LONG).show();
         }
         //db.insertProdotto(nome,marca,sup,quantita,lotto,null,data,null);
       // Cursor c =db.ottieniProdottiByNome(nome,marca);
