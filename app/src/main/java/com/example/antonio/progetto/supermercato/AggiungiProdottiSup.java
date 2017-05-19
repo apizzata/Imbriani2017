@@ -94,11 +94,11 @@ public class AggiungiProdottiSup extends AppCompatActivity{
     }
 
     public  void onClickAggiungi(View v) {
-        String nome = NomeProdotto.getText().toString();
+        String nome = NomeProdotto.getText().toString().toLowerCase();
         String data= GiornoScadenza.getText().toString()+"-"+MeseScadenza.getText().toString()+"-"+AnnoScadenza.getText().toString();
         Integer quantita= Integer.parseInt(QuantitaProdotto.getText().toString());
-        String lotto= LottoProdotto.getText().toString();
-        String marca= MarcaProdotto.getText().toString();
+        String lotto= LottoProdotto.getText().toString().toLowerCase();
+        String marca= MarcaProdotto.getText().toString().toLowerCase();
 
         if(!nome.equals(null)&&!nome.equals("\\s+")&&!marca.equals(null)&&!marca.equals("\\s+")&&!data.equals(null)&&!data.equals("\\s+")&&quantita!=0){
             db.open();

@@ -22,6 +22,8 @@
         <activity android:name=".supermercato.ModificaInfo" />
         <activity android:name=".supermercato.AggiungiProdottiSup" />
         <activity android:name=".ente.MainEnte" />
+        <activity android:name=".ente.Ricerca_ente" />
+        <activity android:name=".ente.Ordine" />
         <activity android:name=".supermercato.DescrizioneProdotto" />
 
     </application>

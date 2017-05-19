@@ -83,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
        // long x = db.inserisciEnti(null, null, null, null, "deco2", "cacca");
-       // db.insertProdotto("Mais22","Bonduelle","deco",220,"PE123425",null,"11-12-2020",null);
+
         db.open();
+       // db.insertPrelevati(2,"Caritas",50);
 
 
-        db.insertPrelevati(0,"bla",74);
          Cursor ca=db.ottieniPrelevati();
 
         if (ca.moveToFirst())

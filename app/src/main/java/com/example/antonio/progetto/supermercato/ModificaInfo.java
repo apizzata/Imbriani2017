@@ -1,5 +1,6 @@
 package com.example.antonio.progetto.supermercato;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,6 +22,7 @@ public class ModificaInfo extends AppCompatActivity {
     Button BAggiorna;
     GestioneDB db;
     String sup;
+    String utente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +30,13 @@ public class ModificaInfo extends AppCompatActivity {
         setContentView(R.layout.modifica_info);
         db= new GestioneDB(this);
         sup=getIntent().getExtras().getString("Supermercato");
+        utente=getIntent().getExtras().getString("Invoking");
         nome= (EditText) findViewById(R.id.info_nome);
         indirizzo=(EditText) findViewById(R.id.info_indirizzo);
         provincia= (EditText) findViewById(R.id.info_Provincia);
         comune= (EditText) findViewById(R.id.info_Comune);
         BAggiorna= (Button) findViewById(R.id.B_aggiorna_info);
+
         nome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +70,17 @@ public class ModificaInfo extends AppCompatActivity {
     public void AggiornaInfo(View v){
         //Db.insert(nome.getText().toString(),....);//TODO aggiungere insert
         db.open();
-
-        Toast.makeText(getApplicationContext(),"Modifica riuscita", Toast.LENGTH_SHORT);
+        String nome_=nome.getText().toString();
+        String indirizzo_=indirizzo.getText().toString();
+        String provincia_=provincia.getText().toString();
+        String comune_=comune.getText().toString();
+        if(utente.equals("Ente")){
+            db.modificaEnte(sup,nome_,indirizzo_,comune_,provincia_);
+            Toast.makeText(getApplicationContext(),"Modifica riuscita", Toast.LENGTH_SHORT);
+        }else{
+            db.modificaSupermercato(sup,nome_,indirizzo_,comune_,provincia_);
+            Toast.makeText(getApplicationContext(),"Modifica riuscita", Toast.LENGTH_SHORT);
+        }
+        db.close();
     }
 }

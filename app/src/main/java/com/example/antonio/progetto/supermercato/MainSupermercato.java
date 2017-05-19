@@ -103,6 +103,7 @@ public class MainSupermercato extends AppCompatActivity {
                 Intent i=new Intent(MainSupermercato.this,DescrizioneProdotto.class);
                // i.putExtra("Nome",obj);
                 i.putExtra("Id",Id.get(position));
+                i.putExtra("Ente",sup);
                 startActivity(i);
             }
         });
@@ -185,7 +186,9 @@ public class MainSupermercato extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),obj,Toast.LENGTH_LONG).show();
                 Intent i=new Intent(MainSupermercato.this,DescrizioneProdotto.class);
                 // i.putExtra("Nome",obj);
+                i.putExtra("Invoking","Supermercato");
                 i.putExtra("Id",Id.get(position));
+                i.putExtra("Ente",sup);
                 startActivity(i);
             }
         });
@@ -195,7 +198,7 @@ public class MainSupermercato extends AppCompatActivity {
         //     Toast.makeText(this,mappa.get(j).get(0) + " " + mappa.get(j).get(1) + " " + mappa.get(j).get(2) + " " + mappa.get(j).get(3) + " " + mappa.get(j).get(4) + " " + mappa.get(j).get(5) + " " + mappa.get(j).get(6) + " " + mappa.get(j).get(7) + " " + mappa.get(j).get(8),Toast.LENGTH_SHORT).show();
         //}
         for(int ka=0;ka<mappa.size();ka++) {
-            prodotti_list.add(ka, mappa.get(ka)+Id.get(ka));
+            prodotti_list.add(ka, mappa.get(ka));
 
         }
 
@@ -209,6 +212,7 @@ public class MainSupermercato extends AppCompatActivity {
     public void onClickInfo(View v){
         Intent i= new Intent(this,ModificaInfo.class);
         i.putExtra("Supermercato",sup);
+        i.putExtra("Invoking","Supermercato");
         startActivity(i);
     }
     public void log_out_sup(View v){

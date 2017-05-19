@@ -19,7 +19,7 @@ import java.util.Calendar;
 public class GestioneDB {
 
     static final String DATABASE_NOME = "Progetto";
-    static final int DATABASE_VERSIONE = 4;
+    static final int DATABASE_VERSIONE = 5;
 
     /*
     Creo una costante contenente la query per la creazione del database
@@ -28,7 +28,7 @@ public class GestioneDB {
     static final String DATABASE_SUPERMERCATI = "create table if not exists SUPERMERCATI (NOME VARCHAR(30), INDIRIZZO VARCHAR(50), COMUNE VARCHAR(50), PROVINCIA VARCHAR(30), EMAIL VARCHAR(50), PASSWORD VARCHAR(50), PRIMARY KEY(EMAIL)); ";
     static final String DATABASE_PRODOTTI = "create table if not exists PRODOTTI (ID INTEGER AUTOINCREMENT, NOME VARCHAR(50), MARCA VARCHAR(50), SUPERMERCATO_E VARCHAR(50), QUANTITA INTEGER, LOTTO VARCHAR(30), TIPO VARCHAR(30), DATA_SCADENZA VARCHAR(10), FOTO VARCHAR(100));";
     static final String DATABASE_MESSAGGI = "create table if not exists MESSAGGI (SUPERMERCATO VARCHAR(30), ENTE VARCHAR(50), MESSAGGIO TEXT); ";
-    static final String DATABASE_PRESI = "create table if not exists PRELEVATI (ENTE VARCHAR(30), PRODOTTO VARCHAR(30), QUANTITA INTEGER); ";
+    static final String DATABASE_PRESI = "create table if not exists PRELEVATI (ENTE VARCHAR(30), PRODOTTO VARCHAR(30), QUANTITA INTEGER); ";//DATA VARCHAR(10) e stato
 
     final Context context;
     DatabaseHelper DBHelper;
@@ -66,7 +66,8 @@ public class GestioneDB {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("ALTER TABLE PRELEVATI ADD DATA VARCHAR(10)");
+            db.execSQL("DROP TABLE PRELEVATI");
+            db.execSQL("create table if not exists PRELEVATI (ENTE VARCHAR(30), PRODOTTO INTEGER, QUANTITA INTEGER, DATA VARCHAR(10), STATO INTEGER);");
 
         }
     }
@@ -118,7 +119,7 @@ public class GestioneDB {
         }
         else {
             ContentValues values = new ContentValues();
-            
+
             values.put("NOME", nome);
             values.put("MARCA", marca);
             values.put("SUPERMERCATO_E", supermercato);
@@ -159,6 +160,7 @@ public class GestioneDB {
         }
         String s=da+"-"+mo+"-"+y.toString();
         values.put("DATA", s);
+        //values.put("STATO",0);
         db.insert("PRELEVATI", null, values);
     }
     //TESTED
@@ -228,7 +230,7 @@ public class GestioneDB {
     }
     //TESTED
     public Cursor listaPrelevati(String mail){
-        return db.rawQuery("SELECT E.NOME, P.NOME, P.MARCA, P.DATA_SCADENZA FROM ENTI E JOIN PRELEVATI R ON E.EMAIL=R.ENTE JOIN PRODOTTI P ON R.PRODOTTO=P.ID WHERE E.EMAIL='"+mail+"'", null);
+        return db.rawQuery("SELECT E.NOME,P.ID, P.NOME, P.MARCA, P.DATA_SCADENZA, R.STATO, R.QUANTITA FROM ENTI E JOIN PRELEVATI R ON E.EMAIL=R.ENTE JOIN PRODOTTI P ON R.PRODOTTO=P.ID WHERE E.EMAIL='"+mail+"'", null);
     }
     //TESTED
     public int decrementa(int ID, int quantita){
@@ -300,15 +302,62 @@ public class GestioneDB {
             Toast.makeText(context.getApplicationContext(), "Acquisto effettuato \n", Toast.LENGTH_LONG).show();
         }
     }
-    //TESTED
-    public void modificaSupermercato(String email, String nome, String indirizzo, String comune, String provincia, String pass){
+
+
+    public Cursor ottieniProdottiByNome(String nome){
+        return db.rawQuery("SELECT * FROM PRODOTTI WHERE NOME='"+nome+"'", null);
+    }
+
+    public void modificaSupermercato(String email, String nome, String indirizzo, String comune, String provincia){
+        Cursor ca= db.rawQuery("SELECT * FROM SUPERMERCATI WHERE EMAIL='"+email+"'", null);
         ContentValues values = new ContentValues();
-        values.put( "NOME", nome );
-        values.put( "INDIRIZZO", indirizzo );
-        values.put( "COMUNE", comune );
-        values.put( "PROVINCIA", provincia );
-        values.put( "EMAIL", email);
-        values.put( "PASSWORD", pass);
+        if(nome.equals(null))
+            values.put( "NOME", ca.getString(0));
+        else
+            values.put("NOME", nome);
+
+        if(indirizzo.equals(null))
+            values.put( "INDIRIZZO", ca.getString(1));
+        else
+            values.put( "INDIRIZZO", indirizzo);
+
+        if(comune.equals(null))
+            values.put( "COMUNE", ca.getString(2));
+        else
+            values.put( "COMUNE", comune );
+
+        if(provincia.equals(null))
+            values.put( "PROVINCIA", ca.getString(3));
+        else
+            values.put( "PROVINCIA", provincia );
+
+
         db.update("SUPERMERCATI", values, "EMAIL='"+email+"'", null);
+    }
+    public void modificaEnte(String email, String nome, String indirizzo, String comune, String provincia){
+        Cursor ca= db.rawQuery("SELECT * FROM ENTI WHERE EMAIL='"+email+"'", null);
+        ContentValues values = new ContentValues();
+        if(nome.equals(null))
+            values.put( "NOME", ca.getString(0));
+        else
+            values.put("NOME", nome);
+
+        if(indirizzo.equals(null))
+            values.put( "INDIRIZZO", ca.getString(1));
+        else
+            values.put( "INDIRIZZO", indirizzo);
+
+        if(comune.equals(null))
+            values.put( "COMUNE", ca.getString(2));
+        else
+            values.put( "COMUNE", comune );
+
+        if(provincia.equals(null))
+            values.put( "PROVINCIA", ca.getString(3));
+        else
+            values.put( "PROVINCIA", provincia );
+
+
+        db.update("ENTI", values, "EMAIL='"+email+"'", null);
     }
 }
