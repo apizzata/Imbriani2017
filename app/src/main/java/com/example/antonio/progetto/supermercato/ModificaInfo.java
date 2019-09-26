@@ -3,6 +3,7 @@ package com.example.antonio.progetto.supermercato;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,12 +75,17 @@ public class ModificaInfo extends AppCompatActivity {
         String indirizzo_=indirizzo.getText().toString();
         String provincia_=provincia.getText().toString();
         String comune_=comune.getText().toString();
+        Log.d("AGGIORNAA","ciao1");
         if(utente.equals("Ente")){
+            Log.d("AGGIORNAA","ciao2");
             db.modificaEnte(sup,nome_,indirizzo_,comune_,provincia_);
-            Toast.makeText(getApplicationContext(),"Modifica riuscita", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(),"Modifica riuscita", Toast.LENGTH_SHORT).show();
+            Log.d("AGGIORNAA","ciao3");
         }else{
+            Log.d("AGGIORNAA","ciao4");
             db.modificaSupermercato(sup,nome_,indirizzo_,comune_,provincia_);
-            Toast.makeText(getApplicationContext(),"Modifica riuscita", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(),"Modifica riuscita", Toast.LENGTH_SHORT).show();
+            Log.d("AGGIORNAA","ciao5");
         }
         db.close();
     }

@@ -51,21 +51,28 @@ public class Ricerca_ente extends AppCompatActivity {
 
 
         Cursor cursor = db.ottieniProdottiByNome(ricerca);
-        if (cursor.moveToFirst()) {
-            do {
-                mappa.put(i, cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(4));
-                //Toast.makeText(this,cursor.getString(2),Toast.LENGTH_SHORT).show();
-                if(cursor.getInt(4)!=0) {
-                    Id.add(i, cursor.getInt(0));
-                    i++;
-                }
-            } while (cursor.moveToNext());
+
+            if (cursor.moveToFirst()) {
+                do {
+                    mappa.put(i, cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(4));
+                    //Toast.makeText(this,cursor.getString(2),Toast.LENGTH_SHORT).show();
+                    if (cursor.getInt(4) != 0) {
+                        Id.add(i, cursor.getInt(0));
+                        i++;
+                    }
+                } while (cursor.moveToNext());
+
+        }else{
+            Intent inte= new Intent(this,MainEnte.class);
+                Toast.makeText(this,"Elemento non trovato",Toast.LENGTH_LONG).show();
+                inte.putExtra("Ente",ente);
+                startActivity(inte);
         }
         for (int ka = 0; ka < mappa.size(); ka++) {
             prodotti_list.add(ka, mappa.get(ka));
 
         }
-        Log.d("ProvaID", Id.get(0).toString());
+
         Lista_prodotti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -84,18 +91,46 @@ public class Ricerca_ente extends AppCompatActivity {
         db.close();
     }
 
-    public void onResume() {
+    public void onResume(){
         super.onResume();
-
+        Lista_prodotti = (ListView) findViewById(R.id.lista_ricerca);
+        db = new GestioneDB(this);
         db.open();
+        Id = new Vector<>();
         Intent j = getIntent();
         String ricerca = j.getExtras().getString("Ricerca");
+        ente = j.getExtras().getString("Ente");
         HashMap<Integer, String> mappa = new HashMap<Integer, String>();
         int i = 0;
         String[] prodotti = {};
         final List<String> prodotti_list = new ArrayList<String>(Arrays.asList(prodotti));
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, prodotti_list);
         Lista_prodotti.setAdapter(adapter);
+
+
+        Cursor cursor = db.ottieniProdottiByNome(ricerca);
+
+        if (cursor.moveToFirst()) {
+            do {
+                mappa.put(i, cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(4));
+                //Toast.makeText(this,cursor.getString(2),Toast.LENGTH_SHORT).show();
+                if (cursor.getInt(4) != 0) {
+                    Id.add(i, cursor.getInt(0));
+                    i++;
+                }
+            } while (cursor.moveToNext());
+
+        }else{
+            Intent inte= new Intent(this,MainEnte.class);
+            Toast.makeText(this,"Elemento non trovato",Toast.LENGTH_LONG).show();
+            inte.putExtra("Ente",ente);
+            startActivity(inte);
+        }
+        for (int ka = 0; ka < mappa.size(); ka++) {
+            prodotti_list.add(ka, mappa.get(ka));
+
+        }
+
         Lista_prodotti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -111,29 +146,8 @@ public class Ricerca_ente extends AppCompatActivity {
             }
         });
 
-        Cursor cursor = db.ottieniProdottiByNome(ricerca);
-        if (cursor.moveToFirst()) {
-            do {
-                mappa.put(i, cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(4));
-                //Toast.makeText(this,cursor.getString(2),Toast.LENGTH_SHORT).show();
-
-                if(cursor.getInt(4)!=0) {
-                    Id.add(i, cursor.getInt(0));
-                    i++;
-                }
-            } while (cursor.moveToNext());
-        } else {
-            Intent k = new Intent(this, MainEnte.class);
-            Toast.makeText(this, "La ricerca non ha fornito risultati", Toast.LENGTH_LONG).show();
-            startActivity(k);
-        }
-        for (int ka = 0; ka < mappa.size(); ka++) {
-            prodotti_list.add(ka, mappa.get(ka));
-
-        }
         db.close();
     }
-
 
 }
 

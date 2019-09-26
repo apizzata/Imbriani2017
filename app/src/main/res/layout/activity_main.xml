@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,11 +19,7 @@
         android:layout_height="48dp"
         android:layout_alignBottom="@+id/Password"
         android:layout_alignLeft="@+id/Password"
-        android:layout_alignStart="@+id/Password"
-        android:layout_marginBottom="69dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginBottom="77dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Email"
@@ -28,21 +31,23 @@
         android:id="@+id/Password"
         android:layout_width="248dp"
         android:layout_height="48dp"
-        android:layout_marginTop="222dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/login"
-        tools:layout_editor_absoluteX="81dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        tools:layout_editor_absoluteX="81dp" />
 
     <Button
         android:id="@+id/Registrazione"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_alignBaseline="@+id/login"
+        android:layout_alignBottom="@+id/login"
+        android:layout_alignEnd="@+id/Password"
+        android:layout_alignRight="@+id/Password"
+        android:background="@android:color/transparent"
         android:onClick="Registrazione"
         android:text="Registrati"
         tools:layout_editor_absoluteX="123dp"
@@ -53,9 +58,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_alignLeft="@+id/Password"
+        android:layout_alignStart="@+id/Password"
         android:layout_below="@+id/radioGroup_main"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:background="@android:color/transparent"
         android:onClick="Accesso"
         android:text="Accedi"
         tools:layout_editor_absoluteX="123dp" />
@@ -86,4 +93,14 @@
         android:layout_centerHorizontal="true" />
 </RadioGroup>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="315dp"
+        app:srcCompat="@drawable/propic" />
+
 </RelativeLayout>
+</ScrollView>

@@ -55,7 +55,7 @@ public class MainSupermercato extends AppCompatActivity {
         sup=k.getExtras().getString("Supermercato");
         Cursor cursor=db.listaInseritiSupermercato(sup);
        // Toast.makeText(getApplicationContext(),cursor.getColumnCount(),Toast.LENGTH_SHORT).show();
-       /* if (cursor.moveToFirst())
+      /*  if (cursor.moveToFirst())
         {
             do {
                 Toast.makeText(this,
@@ -72,6 +72,7 @@ public class MainSupermercato extends AppCompatActivity {
             } while (cursor.moveToNext());
         }
         */
+
       HashMap<Integer,String> mappa= new HashMap<Integer, String>();
         int i=0;
       //  Vector<String>vett=new Vector<>();
@@ -116,7 +117,7 @@ public class MainSupermercato extends AppCompatActivity {
             prodotti_list.add(ka, mappa.get(ka)+Id.get(ka));
 
         }
-
+        db.close();
 
         // prodotti_list.add(0,mappa.get(0).get(0) + " " + mappa.get(0).get(1) + " " + mappa.get(0).get(2) + " " + mappa.get(0).get(3) + " " + mappa.get(0).get(4) + " " + mappa.get(0).get(5) + " " + mappa.get(0).get(6) + " " + mappa.get(0).get(7) + " " + mappa.get(0).get(8));
         //prodotti_list.add(1,mappa.get(1).get(0) + " " + mappa.get(1).get(1) + " " + mappa.get(1).get(2) + " " + mappa.get(1).get(3) + " " + mappa.get(1).get(4) + " " + mappa.get(1).get(5) + " " + mappa.get(1).get(6) + " " + mappa.get(1).get(7) + " " + mappa.get(1).get(8));
@@ -167,11 +168,13 @@ public class MainSupermercato extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),vett.get(j),Toast.LENGTH_SHORT).show();
 
                 //mappa.put(i,cursor.getString(0)+" "+cursor.getString(1)+" "+cursor.getString(2)+" "+cursor.getString(3)+" "+cursor.getString(4)+" "+cursor.getString(5)+" "+cursor.getString(6)+" "+cursor.getString(7)+" "+cursor.getString(8));
-                mappa.put(i,cursor.getString(1)+" "+cursor.getString(2));
+                if(cursor.getInt(4)!=0) {
+                    mappa.put(i, cursor.getString(1) + " " + cursor.getString(2));
 
-                //Toast.makeText(getApplicationContext(),mappa.get(i).get(0)+mappa.get(i).get(1)+mappa.get(i).get(2),Toast.LENGTH_SHORT).show();
-                Id.addElement(cursor.getInt(0));
-                i++;
+                    //Toast.makeText(getApplicationContext(),mappa.get(i).get(0)+mappa.get(i).get(1)+mappa.get(i).get(2),Toast.LENGTH_SHORT).show();
+                    Id.addElement(cursor.getInt(0));
+                    i++;
+                }
             } while (cursor.moveToNext());
         }
         // Toast.makeText(this,mappa.get(0).get(0) + " " + mappa.get(0).get(1) + " " + mappa.get(0).get(2) + " " + mappa.get(0).get(3) + " " + mappa.get(0).get(4) + " " + mappa.get(0).get(5) + " " + mappa.get(0).get(6) + " " + mappa.get(0).get(7) + " " + mappa.get(0).get(8),Toast.LENGTH_SHORT).show();
@@ -202,7 +205,7 @@ public class MainSupermercato extends AppCompatActivity {
 
         }
 
-
+        db.close();
         // prodotti_list.add(0,mappa.get(0).get(0) + " " + mappa.get(0).get(1) + " " + mappa.get(0).get(2) + " " + mappa.get(0).get(3) + " " + mappa.get(0).get(4) + " " + mappa.get(0).get(5) + " " + mappa.get(0).get(6) + " " + mappa.get(0).get(7) + " " + mappa.get(0).get(8));
         //prodotti_list.add(1,mappa.get(1).get(0) + " " + mappa.get(1).get(1) + " " + mappa.get(1).get(2) + " " + mappa.get(1).get(3) + " " + mappa.get(1).get(4) + " " + mappa.get(1).get(5) + " " + mappa.get(1).get(6) + " " + mappa.get(1).get(7) + " " + mappa.get(1).get(8));
         //Toast.makeText(this,mappa.get(0).get(0) + " " + mappa.get(0).get(1) + " " + mappa.get(0).get(2) + " " + mappa.get(0).get(3) + " " + mappa.get(0).get(4) + " " + mappa.get(0).get(5) + " " + mappa.get(0).get(6) + " " + mappa.get(0).get(7) + " " + mappa.get(0).get(8),Toast.LENGTH_SHORT).show();

@@ -8,18 +8,19 @@
 
     <Button
         android:id="@+id/b_info_sup"
-        android:layout_width="166dp"
+        android:layout_width="130dp"
         android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="66dp"
         android:layout_marginLeft="29dp"
         android:layout_marginStart="29dp"
+        android:background="@android:color/transparent"
         android:onClick="onClickInfo"
         android:text="Modifica Info"
         tools:layout_editor_absoluteX="202dp"
-        tools:layout_editor_absoluteY="438dp"
-        android:layout_marginBottom="66dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        tools:layout_editor_absoluteY="438dp" />
 
     <ListView
         android:id="@+id/Lista_prodotti"
@@ -35,7 +36,7 @@
 
     <Button
         android:id="@+id/b_aggiungi_prod_sup"
-        android:layout_width="166dp"
+        android:layout_width="160dp"
         android:layout_height="46dp"
         android:layout_alignBaseline="@+id/b_info_sup"
         android:layout_alignBottom="@+id/b_info_sup"
@@ -43,6 +44,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="18dp"
         android:layout_marginRight="18dp"
+        android:background="@android:color/transparent"
         android:onClick="onClickCambiaAggiungi"
         android:text="Aggiungi Prodotti"
         tools:layout_editor_absoluteX="16dp"
@@ -55,6 +57,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="6dp"
+        android:background="@android:color/transparent"
         android:onClick="log_out_sup"
         android:text="Log out" />
 </RelativeLayout>

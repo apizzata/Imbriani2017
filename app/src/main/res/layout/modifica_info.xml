@@ -6,69 +6,75 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/info_nome"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nome"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="29dp" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="0dp"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/info_indirizzo"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Indirizzo"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="85dp" />
+        <EditText
+            android:id="@+id/info_nome"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="50dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Nome"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="29dp" />
 
-    <EditText
-        android:id="@+id/info_Provincia"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="150dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Provincia"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="208dp" />
+        <EditText
+            android:id="@+id/info_indirizzo"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="100dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Indirizzo"
+            tools:layout_editor_absoluteX="19dp"
+            tools:layout_editor_absoluteY="85dp" />
 
-    <EditText
-        android:id="@+id/info_Comune"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="200dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Comune"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="147dp" />
+        <EditText
+            android:id="@+id/info_Provincia"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="150dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Provincia"
+            tools:layout_editor_absoluteX="19dp"
+            tools:layout_editor_absoluteY="208dp" />
 
-    <Button
-        android:id="@+id/B_aggiorna_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="275dp"
-        android:onClick="AggiornaInfo"
-        android:text="Aggiorna"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="304dp" />
-</RelativeLayout>
+        <EditText
+            android:id="@+id/info_Comune"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@+id/info_Provincia"
+            android:layout_alignStart="@+id/info_Provincia"
+            android:layout_below="@+id/info_Provincia"
+            android:layout_marginLeft="0dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Comune"
+            tools:layout_editor_absoluteX="19dp"
+            tools:layout_editor_absoluteY="147dp" />
+
+        <Button
+            android:id="@+id/B_aggiorna_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="275dp"
+            android:background="@android:color/transparent"
+            android:onClick="AggiornaInfo"
+            android:text="Aggiorna"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="304dp" />
+    </RelativeLayout>
     </ScrollView>

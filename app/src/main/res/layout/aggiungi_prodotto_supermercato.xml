@@ -1,117 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/lotto_nuovo_prod"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="230dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Lotto"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/marca_nuovo_prod"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="270dp"
-        android:layout_marginTop="230dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Marca"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        <EditText
+            android:id="@+id/lotto_nuovo_prod"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="137dp"
+            android:layout_marginTop="260dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Lotto"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp" />
 
-    <EditText
-        android:id="@+id/nome_nuovo_prod"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nome"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        <EditText
+            android:id="@+id/marca_nuovo_prod"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="257dp"
+            android:layout_marginTop="260dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Marca"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp" />
 
-    <EditText
-        android:id="@+id/giorno_nuovo_prod"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="165dp"
-        android:ems="10"
-        android:inputType="date"
-        android:text="gg"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="85dp" />
+        <EditText
+            android:id="@+id/nome_nuovo_prod"
+            android:layout_width="325dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="130dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Nome"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp" />
 
-    <EditText
-        android:id="@+id/mese_nuovo_prod"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="165dp"
-        android:ems="10"
-        android:inputType="date"
-        android:text="mm"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="85dp" />
+        <EditText
+            android:id="@+id/giorno_nuovo_prod"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="195dp"
+            android:ems="10"
+            android:inputType="date"
+            android:text="gg"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="85dp" />
 
-    <EditText
-        android:id="@+id/anno_nuovo_prod"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="270dp"
-        android:layout_marginTop="165dp"
-        android:ems="10"
-        android:inputType="date"
-        android:text="aaaa"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="85dp" />
+        <EditText
+            android:id="@+id/mese_nuovo_prod"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="137dp"
+            android:layout_marginTop="195dp"
+            android:ems="10"
+            android:inputType="date"
+            android:text="mm"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="85dp" />
 
-    <Button
-        android:id="@+id/b_aggiungi_nuovo_prod_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClickAggiungi"
-        android:text="Aggiungi"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="207dp"
-        android:layout_below="@+id/quantita_nuovo_prod"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp" />
+        <EditText
+            android:id="@+id/anno_nuovo_prod"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_alignBaseline="@+id/mese_nuovo_prod"
+            android:layout_alignBottom="@+id/mese_nuovo_prod"
+            android:layout_alignLeft="@+id/marca_nuovo_prod"
+            android:layout_alignStart="@+id/marca_nuovo_prod"
+            android:layout_marginLeft="0dp"
+            android:ems="10"
+            android:inputType="date"
+            android:text="aaaa"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="85dp" />
 
-    <EditText
-        android:id="@+id/quantita_nuovo_prod"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_alignLeft="@+id/giorno_nuovo_prod"
-        android:layout_alignStart="@+id/giorno_nuovo_prod"
-        android:layout_below="@+id/giorno_nuovo_prod"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="Quantità"
-        android:textAlignment="center" />
+        <Button
+            android:id="@+id/b_aggiungi_nuovo_prod_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/quantita_nuovo_prod"
+            android:layout_marginLeft="137dp"
+            android:layout_marginTop="50dp"
+            android:background="@android:color/transparent"
+            android:onClick="onClickAggiungi"
+            android:text="Aggiungi"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="207dp" />
 
-</RelativeLayout>
+        <EditText
+            android:id="@+id/quantita_nuovo_prod"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@+id/giorno_nuovo_prod"
+            android:layout_alignStart="@+id/giorno_nuovo_prod"
+            android:layout_below="@+id/giorno_nuovo_prod"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="Quantità"
+            android:textAlignment="center" />
+
+    </RelativeLayout>
+</ScrollView>

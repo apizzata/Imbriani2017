@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.antonio.progetto.GestioneDB;
+import com.example.antonio.progetto.MainActivity;
 import com.example.antonio.progetto.R;
 import com.example.antonio.progetto.supermercato.DescrizioneProdotto;
 import com.example.antonio.progetto.supermercato.MainSupermercato;
@@ -68,7 +69,7 @@ public class MainEnte extends AppCompatActivity {
             do {
                 mappa.put(i,cursor.getString(2)+" "+cursor.getString(3)+" "+cursor.getString(4));
                 //Toast.makeText(this,cursor.getString(2),Toast.LENGTH_SHORT).show();
-                Integer[] temp=new  Integer[] {cursor.getInt(1),cursor.getInt(5),cursor.getInt(6)};
+                Integer[] temp=new  Integer[] {cursor.getInt(1),cursor.getInt(5)};
                 Id.put(i,temp);
                 //Toast.makeText(this,temp[0],Toast.LENGTH_SHORT).show();
                 i++;
@@ -122,7 +123,7 @@ public class MainEnte extends AppCompatActivity {
             do {
                 mappa.put(i,cursor.getString(2)+" "+cursor.getString(3)+" "+cursor.getString(4));
                 //Toast.makeText(this,cursor.getString(2),Toast.LENGTH_SHORT).show();
-                Integer[] temp=new  Integer[] {cursor.getInt(1),cursor.getInt(5),cursor.getInt(6)};
+                Integer[] temp=new  Integer[] {cursor.getInt(1),cursor.getInt(5)};
                 Id.put(i,temp);
                 //Toast.makeText(this,temp[0],Toast.LENGTH_SHORT).show();
                 i++;
@@ -165,6 +166,10 @@ public class MainEnte extends AppCompatActivity {
         Intent i= new Intent(this,com.example.antonio.progetto.supermercato.ModificaInfo.class);
         i.putExtra("Supermercato",ente);
         i.putExtra("Invoking","Ente");
+        startActivity(i);
+    }
+    public void log_out_ente(View v){
+        Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
     }
 

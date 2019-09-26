@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/ricerca_prodotti"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginTop="50dp"
         tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="38dp" />
@@ -22,7 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="100dp"
         android:layout_marginStart="25dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -34,15 +34,16 @@
         android:id="@+id/b_ricerca_ente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ricerca_prodotti"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/ricerca_prodotti"
+        android:layout_toRightOf="@+id/ricerca_prodotti"
+        android:background="@android:color/transparent"
         android:onClick="ricerca_prodotti"
         android:text="Vai"
         tools:layout_editor_absoluteX="268dp"
-        tools:layout_editor_absoluteY="307dp"
-        android:layout_alignTop="@+id/ricerca_prodotti"
-        android:layout_toRightOf="@+id/ricerca_prodotti"
-        android:layout_toEndOf="@+id/ricerca_prodotti"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp" />
+        tools:layout_editor_absoluteY="307dp" />
 
     <Button
         android:id="@+id/b_modifica_info_ente"
@@ -52,6 +53,7 @@
         android:layout_alignStart="@+id/ricerca_prodotti"
         android:layout_below="@+id/b_ricerca_ente"
         android:layout_marginTop="17dp"
+        android:background="@android:color/transparent"
         android:onClick="onClickCambiaInfo"
         android:text="Modifica Info"
         tools:layout_editor_absoluteX="245dp"
@@ -69,7 +71,8 @@
         android:layout_marginLeft="22dp"
         android:layout_marginRight="0dp"
         android:layout_marginStart="22dp"
-        android:onClick="log_out"
+        android:background="@android:color/transparent"
+        android:onClick="log_out_ente"
         android:text="Log out"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="401dp" />

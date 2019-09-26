@@ -1,5 +1,6 @@
 package com.example.antonio.progetto;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -9,6 +10,7 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -62,13 +64,27 @@ public class MainActivity extends AppCompatActivity {
         REnte=(RadioButton) findViewById(R.id.ente_main_acticity);
         RSupermercato=(RadioButton) findViewById(R.id.sup_main_activity);
         RGroup=(RadioGroup) findViewById(R.id.radioGroup_main);
-
-        TUser.setOnClickListener(new View.OnClickListener() {
+     /*   TUser.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (TUser.getText().toString().equals("Email")) {
+                    TUser.setText("");
+                }
+            }
+        });*/
+/*
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(TUser.getRootView().getWindowToken(), 0);
+       // imm.hideSoftInputFromWindow(TPass.getWindowToken(),0);
+  */      TUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (TUser.getText().toString().equals("Email")) {
                     TUser.setText("");
+
                 }
+             //   InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+               // imm.showSoftInput(TUser, InputMethodManager.SHOW_IMPLICIT);
             }
         });
         RGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -84,12 +100,11 @@ public class MainActivity extends AppCompatActivity {
 
        // long x = db.inserisciEnti(null, null, null, null, "deco2", "cacca");
 
+       // db.deleteProdotti();
         db.open();
-       // db.insertPrelevati(2,"Caritas",50);
-
-
-         Cursor ca=db.ottieniPrelevati();
-
+        //Cursor c=db.ottieniEnti();
+      //  Toast.makeText(this,c.getCount(),Toast.LENGTH_LONG).show();
+        /*Cursor ca=db.listaInseriti();
         if (ca.moveToFirst())
         {
             do {
@@ -100,8 +115,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             } while (ca.moveToNext());
         }
-       // Toast.makeText(getApplicationContext(),ca.getString(5),Toast.LENGTH_LONG).show();
-   }
+    */   // Toast.makeText(getApplicationContext(),ca.getString(5),Toast.LENGTH_LONG).show();
+    }
+
     public void Registrazione(View v){
         Intent i= new Intent(this, Registrazione.class);
         db.close();
